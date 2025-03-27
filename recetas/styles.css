@@ -1,6 +1,8 @@
 body{
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Montserrat";
     background-color: bisque;
+    justify-content: center;
+    color: #555;
 }
 
 #tarjetaMain{
@@ -8,24 +10,123 @@ body{
     border-radius: 15px;
     margin: 30px;
     padding: 30px;
-}
+    }
 
 #tarjetaMain img{
+    display: block;
+    height: auto;
+    width: 95%;
+    border-radius: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}
+
+h1{
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: brown;
+    font-size: xx-large;
+}
+
+#descripcion {
+    color: black;
     margin: 20px;
-    width: 500px;
-    position: relative;
 }
 
 #descripcion p{
     color: #555;
+    padding-bottom: 15px;
 }
 
 #preparation {
-    background-color: pink;
-    padding: 20px;
+    background-color: rgba(255, 182, 193, 0.3);
+    padding: 10px;
+    margin: 20px;
+    margin-bottom: 5px;
     border-radius: 15px;
 }
 
+#preparation ul {
+    list-style-position: outside;
+}
+
+#preparation ul li{
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-top: 17px;
+}
+
 #preparation h3{
-    color: darkred;
+    color: darkmagenta;
+    padding-left: 20px;
+}
+
+#ingredients {
+    margin: 20px;
+}
+
+#ingredients ul {
+    list-style-position: outside;
+}
+
+#ingredients ul li{
+    padding-left: 20px;
+    margin-left: -20px;
+    margin-top: 10px;
+}
+
+#ingredients ul li::marker{
+    color: brown;
+    
+}
+
+#Instructions {
+    margin: 20px;
+}
+
+#Instructions ol li::marker{
+    color: brown;
+    font-weight: bold;
+}
+
+#Instructions ol{
+    list-style-position: outside;
+}
+
+#Instructions ol li {
+    padding-left: 20px;
+    margin-left: -20px;
+    margin-top: 10px;
+}
+
+#nutrition {
+    margin: 20px;
+}
+
+#nutrition table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#nutrition td{
+    padding: 20px;
+    border: 1px solid gray;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+hr {
+    color: #555;
+}
+
+.numeros{
+    color: brown;
 }
