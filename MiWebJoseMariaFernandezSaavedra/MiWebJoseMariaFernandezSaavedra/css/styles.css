@@ -1,0 +1,327 @@
+/* Importing fonts */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Press+Start+2P&family=Russo+One&display=swap');
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0px;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+    background-color: #000;
+    z-index: 10;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-left: 30px;
+}
+
+.menu-btn {
+    font-size: 2rem;
+    padding: 10px 20px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 20px;
+    z-index: 3;
+}
+
+.menu-checkbox {
+    display: none;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.3s ease-in-out;
+    z-index: 2;
+}
+
+.side-menu ul {
+    list-style: none;
+    text-align: center;
+}
+
+.side-menu li {
+    margin: 20px 0;
+}
+
+.side-menu a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.side-menu a:hover {
+    color: #1E90FF;
+}
+
+.menu-checkbox:checked ~ .side-menu {
+    right: 0;
+}
+
+/* Background video styling */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Content styling */
+.main-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+main {
+    min-height: calc(100vh - 120px);
+    position: relative;
+}
+
+/* Projects Section */
+.projects {
+    padding: 5px 30px;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 10px;
+    position: relative;
+}
+
+.projects h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 0px;
+}
+
+.project {
+    margin-bottom: 60px;
+}
+
+/* Styling for project card */
+.project-card {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+}
+
+/* Image styling */
+.project img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Name of the project */
+.project-name {
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Project details */
+.project-details {
+    margin-top: 20px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+.project-details div {
+    margin-bottom: 10px;
+    color: #bbbbbb;
+}
+
+.project-details span {
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #333;
+    background-color: #000;
+    z-index: 1;
+}
+
+footer p {
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+footer a {
+    color: #1E90FF;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #63b8ff;
+}
+
+/* Estilos para el recuadro */
+.wrapper {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-top: 3rem;
+    margin-top: 40px;
+}
+
+.wrapper h1 {
+    text-align: center;
+}
+
+/* Estilos para la sección About Me */
+.about-section {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0; /* Padding vertical para separar del contenido superior e inferior */
+    margin-bottom: 1rem; /* Margen inferior para separar las tarjetas */
+}
+
+.about-container:hover{
+    transform: scale(1.05);
+}
+
+.about-container {
+    width: 100%;
+    display: flex;
+    align-items: stretch; /* Estiramos los elementos para que ocupen toda la altura */
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 1000px;
+    width: 90%;
+    flex-wrap: wrap;
+    transition: transform 0.3s ease;
+}
+
+/* Estilos para la sección Info Section */
+.info-section {
+    display: flex;
+    justify-content: center;
+    padding: 4rem 0; /* Padding vertical para separar del contenido superior e inferior */
+    margin-bottom: 1rem; /* Margen inferior para separar las tarjetas */
+}
+
+.info-container {
+    width: 100%;
+    display: flex;
+    align-items: stretch; /* Estiramos los elementos para que ocupen toda la altura */
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 1000px;
+    width: 90%;
+    flex-wrap: wrap;
+    flex-direction: row; /* Aquí cambió la dirección de los elementos */
+    transition: transform 0.3s ease;
+}
+
+.info-container:hover{
+    transform: scale(1.05);
+}
+
+/* Estilos comunes para las imágenes */
+.about-image,
+.info-image {
+    flex: 1;
+    min-width: 300px;
+    max-width: 40%;
+}
+
+.about-image img,
+.info-image img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Estilos comunes para los textos */
+.about-text,
+.info-text {
+    flex: 1;
+    min-width: 300px;
+    max-width: 70%;
+    overflow: visible;
+}
+
+/* Cambiar la tipografía del título (h1) */
+.about-text h1,
+.info-text h1 {
+    font-family: 'Russo One', sans-serif; /* Cambia la tipografía */
+    font-size: 4rem; /* Aumenta el tamaño del título */
+    margin-bottom: 1rem;
+    font-weight: 600; /* Ajusta el grosor de la fuente */
+    flex-grow: 1; /* Hace que el título ocupe más espacio */
+}
+
+/* Estilos para los párrafos */
+.about-text p,
+.info-text p {
+    font-size: 1.5rem; /* Aumenta el tamaño del texto */
+    line-height: 1.8;
+    word-wrap: break-word;
+    flex-grow: 2; /* Hace que el texto ocupe más espacio */
+}
