@@ -1,22 +1,24 @@
 body{
     font-family: "Montserrat";
-    background-color: bisque;
+    background-color: #F3E5D8;
     justify-content: center;
-    color: #555;
+    color: #5A5751;
 }
 
 #tarjetaMain{
     background-color: white;
-    border-radius: 15px;
+    border-radius: 30px;
     margin: 30px;
     padding: 30px;
+    width: 800px;
+    justify-self: center;
     }
 
 #tarjetaMain img{
     display: block;
     height: auto;
     width: 95%;
-    border-radius: 15px;
+    border-radius: 20px;
     margin-left: 20px;
     margin-right: 20px;
     
@@ -24,15 +26,15 @@ body{
 
 h1{
     font-family: 'Times New Roman', Times, serif;
-    color: black;
-    font-size: 45px;
+    color: #282725;
+    font-size: 50px;
     margin-bottom: 20px;
 }
 
 h2{
     font-family: 'Times New Roman', Times, serif;
-    color: brown;
-    font-size: xx-large;
+    color: #804838;
+    font-size: 40px;
 }
 
 #descripcion {
@@ -46,11 +48,11 @@ h2{
 }
 
 #preparation {
-    background-color: rgba(255, 182, 193, 0.3);
+    background-color: #FFF7FC;
     padding: 10px;
     margin: 20px;
     margin-bottom: 5px;
-    border-radius: 15px;
+    border-radius: 20px;
 }
 
 #preparation ul {
@@ -64,7 +66,7 @@ h2{
 }
 
 #preparation h3{
-    color: darkmagenta;
+    color: #663349;
     padding-left: 20px;
 }
 
@@ -78,12 +80,12 @@ h2{
 
 #ingredients ul li{
     padding-left: 20px;
-    margin-left: -20px;
+    margin-left: -5px;
     margin-top: 10px;
 }
 
 #ingredients ul li::marker{
-    color: brown;
+    color: #7E4636;
     
 }
 
@@ -92,7 +94,7 @@ h2{
 }
 
 #Instructions ol li::marker{
-    color: brown;
+    color: #7E4636;
     font-weight: bold;
 }
 
@@ -102,7 +104,7 @@ h2{
 
 #Instructions ol li {
     padding-left: 20px;
-    margin-left: -20px;
+    margin-left: -10px;
     margin-top: 10px;
 }
 
@@ -115,18 +117,77 @@ h2{
     border-collapse: collapse;
 }
 
-#nutrition td{
+#nutrition tr{
     padding: 20px;
-    border: 1px solid gray;
+    border: 1px solid #E1E1E1;
     border-left: 0;
     border-right: 0;
+    border-bottom: 0;
+}
+
+#nutrition td{
+    padding: 20px;
+}
+
+#nutrition tr:first-child{
     border-top: 0;
 }
 
-hr {
-    color: #555;
+
+hr{
+    color: #E1E1E1;
+    background-color: #E1E1E1; 
+    border: none;
+    height: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .numeros{
-    color: brown;
+    color: #7E4636;
+}
+
+@media (max-width: 768px) {
+    #tarjetaMain {
+        margin: 15px auto;
+        padding: 20px;
+        width: 95%;
+        border-radius: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    #descripcion, #ingredients, #Instructions, #nutrition {
+        margin: 15px 0;
+    }
+    
+    hr {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    #tarjetaMain {
+        padding: 15px;
+        margin: 10px auto;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    #preparation {
+        padding: 10px 15px;
+    }
+    
+    #nutrition td {
+        padding: 10px;
+    }
 }

@@ -1,0 +1,178 @@
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F3E5D8;
+}
+
+header {
+    text-align: center;
+    background-color: white;
+}
+
+#palomaMontero{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+#nav {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: green;
+}
+
+#nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    margin: 5px;
+}
+
+#portada {
+    background-image: url('img/fondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+    padding: 60px;
+    padding-bottom: 70px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#portada button {
+    background-color: #DE9100;
+    border: 0;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#portada .chincheta {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+}
+
+#portada p {
+    font-size: small;
+}
+
+#tarjeta {
+    text-align: center;
+}
+
+#servicios {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#servicios p {
+    text-align: left;
+    font-size: small;
+    margin: 5px;
+}
+
+#servicios h4 {
+    color: green;
+    font-weight: 400;
+}
+
+footer{
+    text-align: center;
+    background-color: #F3E5D8;
+    margin-bottom: -15px;
+}
+
+main{
+    background-color: #F3E5D8;
+}
+
+#tarjeta {
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.formulario{
+    background-color: #444141;
+    border-radius: 10px;
+    margin: 10px 15%;
+}
+
+.formulario h4 {
+    color: #DE9100;
+    padding-top: 10px;
+    margin-bottom: -10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    padding: 25px;
+}
+
+.formulario label{
+    text-align: left;
+    color: white;
+    font-weight: 500;
+    flex-direction: column;
+    display: flex;
+}
+
+.formulario input {
+    border-radius: 3px;
+    border: 0;
+    height: 35px;
+    width: fill;
+}
+
+.formulario textarea{
+    border: 0;
+    border-radius: 3px;
+}
+
+.formulario input::placeholder{
+    font-size: medium;
+    padding-left: 5px;
+}
+
+.formulario button {
+    border: 0;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 15px;
+    width: 100px;
+    background-color: #DE9100;
+    color: white;
+    font-weight: bold;
+}
+
+.formulario #fila1 {
+    display: flex;
+    gap: 10px;
+}
+
+.formulario #fila1 div{
+    flex: 1;
+    margin-right: 5px;
+}
+
+.formulario #fila1 input {
+    width: 100%;
+}
+
+#Servicios {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
