@@ -14,6 +14,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: baseline;
+    gap: 10px
 }
 
 #nav {
@@ -42,7 +43,7 @@ header {
 }
 
 #portada button {
-    background-color: #DE9100;
+    background-color: #04BF8A;
     border: 0;
     color: white;
     padding: 5px 15px;
@@ -54,8 +55,13 @@ header {
 #portada .chincheta {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    flex-direction: row-reverse;
     gap: 10px;
+    margin-bottom: 10px;
+}
+
+#portada .chincheta img{
+    transform: rotate(45deg);
 }
 
 #portada p {
@@ -69,6 +75,7 @@ header {
 #servicios {
     display: flex;
     justify-content: space-evenly;
+    padding-bottom: 10px;
 }
 
 #servicios p {
@@ -77,9 +84,21 @@ header {
     margin: 5px;
 }
 
+#servicios .circulito{
+    background-color: #04BF8A;
+    align-items: center;
+    justify-self: center;
+    justify-content: center;
+    display: flex;
+    width: 150px;
+    height: 150px;
+    border-radius: 50% ;
+    margin: 30px;
+}
+
 #servicios h4 {
-    color: green;
-    font-weight: 400;
+    color: #04BF8A;
+    font-weight: 500;
 }
 
 footer{
@@ -107,13 +126,13 @@ main{
 }
 
 .formulario{
-    background-color: #444141;
+    background-color: rgba(0,0,0,0.8);
     border-radius: 10px;
     margin: 10px 15%;
 }
 
 .formulario h4 {
-    color: #DE9100;
+    color: #04BF8A;
     padding-top: 10px;
     margin-bottom: -10px;
 }
@@ -156,7 +175,7 @@ form {
     padding: 10px;
     margin-top: 15px;
     width: 100px;
-    background-color: #DE9100;
+    background-color: #04BF8A;
     color: white;
     font-weight: bold;
 }
@@ -173,12 +192,6 @@ form {
 
 .formulario #fila1 input {
     width: 100%;
-}
-
-#Servicios {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
 }
 
 @media (max-width: 850px) {
