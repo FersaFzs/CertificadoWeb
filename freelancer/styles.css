@@ -1,11 +1,13 @@
 body{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F3E5D8;
+    background-color: black;
 }
 
 header {
     text-align: center;
-    background-color: white;
+    color: white;
+    background-color: #04BF8A;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7)
 }
 
 #palomaMontero{
@@ -17,7 +19,7 @@ header {
 #nav {
     display: flex;
     justify-content: space-evenly;
-    background-color: green;
+    background: linear-gradient(to top, rgb(38, 136, 106), #04BF8A);
 }
 
 #nav a{
@@ -28,12 +30,9 @@ header {
 }
 
 #portada {
-    background-image: url('img/fondo.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     text-align: center;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     padding: 60px;
     padding-bottom: 70px;
     margin-bottom: 20px;
@@ -49,6 +48,7 @@ header {
     padding: 5px 15px;
     border-radius: 3px;
     font-weight: bold;
+    box-shadow: 4px 4px, 6px;
 }
 
 #portada .chincheta {
@@ -84,16 +84,21 @@ header {
 
 footer{
     text-align: center;
-    background-color: #F3E5D8;
+    background-color: black;
     margin-bottom: -15px;
+    color: white;
 }
 
 main{
-    background-color: #F3E5D8;
+    background-color: black;
+    background-image: url('img/49a3d1f296b23b55c873338884bf32a9.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #tarjeta {
-    background-color: white;
+    background-color: rgba(255,255,255,0.85);
     margin-left: 10%;
     margin-right: 10%;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
@@ -176,3 +181,9 @@ form {
     gap: 20px;
 }
 
+@media (max-width: 850px) {
+    #servicios {
+        display: flex;
+        flex-direction: column;
+    }
+}
