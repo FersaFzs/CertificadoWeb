@@ -1,4 +1,4 @@
-const apiKey = "30cfec248db247e3af383631250104";
+const apiKey = "525940e33dffd67de64baae00c237657";
 
 document.getElementById("getClima").addEventListener("click", () => {
     const ciudad = document.getElementById("ciudad").value;
@@ -16,12 +16,12 @@ async function getClima(city){
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=es`
         );
 
-        const datos = await respuesta.json();
+        const data = await respuesta.json();
 
         if (respuesta.ok) {
-            document.getElementById("nombreCiudad").textContent = datos.name;
-            document.getElementById("temperatura").textContent = `🌡️ ${datos.main.temp} ºC`;
-            document.getElementById("descripcion").textContent = datos.weather[0].description;
+            document.getElementById("nombreCiudad").textContent = data.name;
+            document.getElementById("temperatura").textContent = `🌡️ ${data.main.temp} ºC`;
+            document.getElementById("descripcion").textContent = data.weather[0].description;
             document.getElementById("weatherIcon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         } else {
             alert("Ciudad no encontrada.");
