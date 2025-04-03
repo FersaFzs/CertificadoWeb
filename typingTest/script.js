@@ -1,4 +1,3 @@
-// Array de palabras en español (¡Amplíalo como quieras!)
 const palabras = [
     "hola", "mundo", "código", "programación", "teclado", "ratón", 
     "pantalla", "desarrollador", "javascript", "html", "css", "web", 
@@ -42,7 +41,7 @@ const palabras = [
   ];
   
   
-  // Elementos del DOM
+
   const textToType = document.getElementById("text-to-type");
   const userInput = document.getElementById("user-input");
   const progressBar = document.getElementById("progress-bar");
@@ -52,14 +51,14 @@ const palabras = [
   const startBtn = document.getElementById("start-btn");
   const nuevoTextoBtn = document.getElementById("nuevo-texto-btn");
   
-  // Variables globales
+ 
   let currentCharIndex = 0;
   let mistakes = 0;
   let isTyping = false;
   let timer;
   let timeLeft = 60;
   
-  // Generar texto aleatorio (30 palabras por defecto)
+
   function generarTextoAleatorio(numPalabras = 30) {
     let texto = "";
     for (let i = 0; i < numPalabras; i++) {
@@ -69,19 +68,19 @@ const palabras = [
     return texto.trim();
   }
   
-  // Actualizar el texto en el DOM
+
   function actualizarTexto() {
     const textoAleatorio = generarTextoAleatorio();
     textToType.innerHTML = "";
   
-    // Crear un span por cada carácter
+
     textoAleatorio.split("").forEach((char) => {
       const span = document.createElement("span");
       span.textContent = char;
       textToType.appendChild(span);
     });
   
-    // Reiniciar variables
+
     currentCharIndex = 0;
     mistakes = 0;
     progressBar.style.width = "0%";
@@ -95,7 +94,7 @@ const palabras = [
     accuracyDisplay.textContent = "0";
   }
   
-  // Iniciar el test
+
   function startTest() {
     if (isTyping) return;
     isTyping = true;
@@ -104,7 +103,7 @@ const palabras = [
     timeLeft = 60;
     timeDisplay.textContent = timeLeft;
   
-    // Temporizador
+
     timer = setInterval(() => {
       timeLeft--;
       timeDisplay.textContent = timeLeft;
@@ -117,17 +116,17 @@ const palabras = [
     }, 1000);
   }
   
-  // Manejar entrada del usuario
+
   function handleInput(e) {
     const chars = textToType.querySelectorAll("span");
     const userText = userInput.value;
   
-    // Resaltar primer carácter si es el inicio
+
     if (currentCharIndex === 0) {
       chars[0].classList.add("current");
     }
   
-    // Añadir más texto si el usuario llega al final
+ 
     if (currentCharIndex >= chars.length) {
       const textoActual = textToType.textContent;
       const nuevoTexto = generarTextoAleatorio(15);
@@ -143,12 +142,12 @@ const palabras = [
       const newChars = textToType.querySelectorAll("span");
       newChars[currentCharIndex]?.classList.add("current");
       
-      // Ajustar scroll después de añadir texto
+
       ajustarScroll();
       return;
     }
   
-    // Verificar carácter actual
+    //Verifico caracter actual
     const currentChar = chars[currentCharIndex].textContent;
     const userChar = userText[currentCharIndex];
   
@@ -164,14 +163,13 @@ const palabras = [
     updateProgressBar(currentCharIndex, chars.length);
     updateStats(userText);
   
-    // Resaltar siguiente carácter y ajustar scroll
+
     if (currentCharIndex < textToType.querySelectorAll("span").length) {
       textToType.querySelectorAll("span")[currentCharIndex]?.classList.add("current");
-      ajustarScroll(); // ¡Scroll automático aquí!
+      ajustarScroll(); 
     }
   }
   
-  // Función para mantener el carácter actual visible
   function ajustarScroll() {
     const chars = textToType.querySelectorAll("span");
     if (chars[currentCharIndex]) {
@@ -183,7 +181,7 @@ const palabras = [
     }
   }
   
-  // Manejar retroceso (Backspace)
+
   function handleBackspace() {
     const chars = textToType.querySelectorAll("span");
     if (currentCharIndex > 0) {
@@ -194,13 +192,13 @@ const palabras = [
     }
   }
   
-  // Actualizar barra de progreso
+
   function updateProgressBar(current, total) {
     const progress = (current / total) * 100;
     progressBar.style.width = `${progress}%`;
   }
   
-  // Actualizar estadísticas (WPM y precisión)
+
   function updateStats(userText) {
     const correctChars = userText.length - mistakes;
     const accuracy = (correctChars / userText.length) * 100 || 0;
@@ -211,7 +209,7 @@ const palabras = [
     wpmDisplay.textContent = wpm;
   }
   
-  // Event Listeners
+
   startBtn.addEventListener("click", startTest);
   nuevoTextoBtn.addEventListener("click", actualizarTexto);
   userInput.addEventListener("input", handleInput);
@@ -221,5 +219,5 @@ const palabras = [
     }
   });
   
-  // Iniciar texto al cargar la página
+
   window.addEventListener("DOMContentLoaded", actualizarTexto);
