@@ -1,0 +1,117 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .typing-test {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  h1 {
+    color: #bb86fc;
+    margin-bottom: 20px;
+  }
+  
+  #text-to-type {
+    background-color: #2d2d2d;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    min-height: 100px;
+    white-space: pre-wrap;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  #text-to-type span {
+    position: relative;
+    transition: all 0.2s;
+  }
+  
+  #text-to-type span.current {
+    background-color: #bb86fc;
+    color: #000;
+    border-radius: 2px;
+  }
+  
+  #text-to-type span.incorrect {
+    color: #ff5555;
+    text-decoration: underline;
+  }
+  
+  #progress-bar {
+    height: 4px;
+    background: #bb86fc;
+    width: 0;
+    transition: width 0.1s;
+    margin-bottom: 15px;
+    border-radius: 2px;
+  }
+  
+  #user-input {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    background-color: #2d2d2d;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    resize: none;
+    margin-bottom: 15px;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+  
+  .stats span {
+    color: #bb86fc;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  button {
+    background-color: #bb86fc;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #9a67ea;
+  }
+  
+  #nuevo-texto-btn {
+    background-color: #03DAC6;
+  }
+  
+  #nuevo-texto-btn:hover {
+    background-color: #018786;
+  }
