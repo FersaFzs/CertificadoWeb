@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shooter 3D Simple</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Importar Three.js desde el archivo local -->
+  <script type="module" defer>
+    import * as THREE from "./libs/three.module.min.js";
+
+    // Crear escena, cámara y renderizador
+    let scene, camera, renderer, cube;
+
+    // Inicialización
+    function init() {
+      // Crear la escena
+      scene = new THREE.Scene();
+
+      // Crear la cámara (campo de visión, relación de aspecto, plano cercano, plano lejano)
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+      // Crear el renderizador y establecer el tamaño de la ventana
+      renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Crear una geometría de cubo
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+      cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+
+      // Posicionar la cámara
+      camera.position.z = 5;
+
+      // Ajustar el tamaño del canvas al cambiar el tamaño de la ventana
+      window.addEventListener('resize', onWindowResize, false);
+
+      // Iniciar la animación
+      animate();
+    }
+
+    // Función de animación
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Rotar el cubo
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      // Renderizar la escena
+      renderer.render(scene, camera);
+    }
+
+    // Función para ajustar el tamaño del renderizador y la cámara al cambiar el tamaño de la ventana
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    // Llamar a la función de inicialización
+    init();
+  </script>
+</body>
+</html>
