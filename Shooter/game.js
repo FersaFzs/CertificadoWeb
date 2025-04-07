@@ -7,7 +7,7 @@ const ui = document.getElementById('ui');
 const menu = document.getElementById('menu');
 const startBtn = document.getElementById('startBtn');
 const scoresBtn = document.getElementById('scoresBtn');
-const scoresDiv = document.getElementById('scores');
+const scoresDiv = document.getElementById('scores')
 
 // Tamaño del canvas
 canvas.width = window.innerWidth;
@@ -163,6 +163,14 @@ function canMove(x, y, radius) {
     return true;
 }
 
+function canMoveEnemy(x, y, radius) {
+    if (x < radius || x > canvas.width - radius || 
+        y < radius || y > canvas.height - radius) {
+        return false;
+    }
+    return true;
+}
+
 // ========== FUNCIONES DEL JUEGO ==========
 function startWave() {
     waves.currentWave++;
@@ -171,14 +179,21 @@ function startWave() {
     waves.waveInProgress = true;
     waves.lastSpawnTime = 0;
     
-    // Cada 5 oleadas, añadir un jefe
     if (waves.currentWave % 5 === 0) {
+        let bossX = canvas.width / 2;
+        let bossY = -100;
+        const bossRadius = 60;
+
+        while (!canMove(bossX, bossY, bossRadius)) {
+            bossY += 10;
+        }
+
         enemies.push({
-            x: canvas.width / 2,
-            y: -100,
-            radius: 60,
+            x: bossX,
+            y: bossY,
+            radius: bossRadius,
             color: '#c0392b',
-            speed: 0.8,
+            speed: 1.5,
             health: 200 + waves.currentWave * 20,
             maxHealth: 200 + waves.currentWave * 20,
             damage: 2,
@@ -186,6 +201,7 @@ function startWave() {
             isBoss: true
         });
         waves.enemiesAlive++;
+        console.log(`Boss generado en oleada ${waves.currentWave} en x: ${bossX}, y: ${bossY}`);
     }
 }
 
@@ -478,7 +494,7 @@ function updateEntities() {
         let enemyNewX = enemy.x + Math.cos(angle) * enemy.speed;
         let enemyNewY = enemy.y + Math.sin(angle) * enemy.speed;
 
-        if (canMove(enemyNewX, enemyNewY, enemy.radius)) {
+        if (canMoveEnemy(enemyNewX, enemyNewY, enemy.radius)) {
             enemy.x = enemyNewX;
             enemy.y = enemyNewY;
         }
@@ -754,6 +770,10 @@ function gameLoop(currentTime) {
         waves.lastSpawnTime = currentTime;
     }
     
+    if (isMouseDown){
+        shoot();
+    }
+
     updateEntities();
     checkCollisions();
     checkWaveStatus();
@@ -770,6 +790,8 @@ function gameLoop(currentTime) {
 
 // ========== EVENT LISTENERS ==========
 const keys = {};
+let isMouseDown = false;
+
 window.addEventListener('keydown', (e) => {
     keys[e.code] = true;
     
@@ -795,9 +817,16 @@ canvas.addEventListener('mousemove', (e) => {
     player.angle = Math.atan2(e.clientY - rect.top - player.y, e.clientX - rect.left - player.x);
 });
 
-canvas.addEventListener('click', () => {
-    if (gameState.running) shoot();
+canvas.addEventListener('mousedown', () => {
+    if (gameState.running){
+        isMouseDown = true;
+        shoot();
+    } 
 });
+
+canvas.addEventListener('mouseup', () => {
+    isMouseDown = false;
+})
 
 startBtn.addEventListener('click', initGame);
 scoresBtn.addEventListener('click', showHighscores);

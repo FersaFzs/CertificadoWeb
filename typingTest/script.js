@@ -125,42 +125,66 @@ function handleInput(e) {
   const chars = textToType.querySelectorAll("span");
   const userText = userInput.value;
 
-  if (currentCharIndex === 0) {
-    chars[0].classList.add("current");
-  }
-
-  // Verificar si estamos cerca del final del texto visible
-  const palabrasEscritas = userText.split(" ").filter(Boolean).length;
-  if (palabrasEscritas >= palabrasVisibles - 5) { // Añadir más palabras cuando queden 5 visibles
-    textoCompleto.push(...generarPalabrasAleatorias(5)); // Añadir 5 palabras nuevas
-    palabrasVisibles += 5;
-    renderizarTexto(); // Re-renderiza con el nuevo texto
-    return; // Salimos para evitar procesar el input hasta el próximo evento
-  }
-
   const currentChar = chars[currentCharIndex]?.textContent;
   const userChar = userText[currentCharIndex];
 
   if (!currentChar) return; // Evitar errores si no hay más caracteres visibles
 
+  // Limpiar la clase 'current' del carácter actual
+  chars[currentCharIndex].classList.remove("current");
+
+  // Procesar el carácter actual antes de cualquier regeneración
   if (userChar === currentChar) {
     chars[currentCharIndex].classList.add("correct");
-    chars[currentCharIndex].classList.remove("incorrect", "current");
+    chars[currentCharIndex].classList.remove("incorrect");
     currentCharIndex++;
-  } else {
+  } else if (userChar !== undefined) {
     chars[currentCharIndex].classList.add("incorrect");
-    chars[currentCharIndex].classList.remove("current");
+    chars[currentCharIndex].classList.remove("correct");
+    chars[currentCharIndex].classList.add("current"); // Mantener el seguidor si hay error
     mistakes++;
+  }
+
+  // Verificar si necesitamos regenerar texto
+  const palabrasEscritas = userText.split(" ").filter(Boolean).length;
+  if (palabrasEscritas >= palabrasVisibles - 5) {
+    textoCompleto.push(...generarPalabrasAleatorias(5)); // Añadir 5 palabras nuevas
+    palabrasVisibles += 5;
+    renderizarTexto(); // Re-renderiza con el nuevo texto
+    // Actualizar el seguidor después de renderizar
+    const nuevosChars = textToType.querySelectorAll("span");
+    if (nuevosChars[currentCharIndex]) {
+      nuevosChars[currentCharIndex].classList.add("current");
+    }
+  } else {
+    // Si no se regenera, avanzar el seguidor normalmente (solo si fue correcto)
+    if (userChar === currentChar && chars[currentCharIndex]) {
+      chars[currentCharIndex].classList.add("current");
+    }
   }
 
   updateProgressBar(currentCharIndex, textoCompleto.join(" ").length);
   updateStats(userText);
-
-  const nuevosChars = textToType.querySelectorAll("span");
-  nuevosChars[currentCharIndex]?.classList.add("current");
   ajustarScroll();
 }
 
+function renderizarTexto() {
+  textToType.innerHTML = ""; // Limpiar el DOM
+  const textoVisible = textoCompleto.slice(0, palabrasVisibles).join(" ");
+  textoVisible.split("").forEach((char, index) => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    if (index < currentCharIndex && userInput.value[index] === char) {
+      span.classList.add("correct");
+    } else if (index < currentCharIndex) {
+      span.classList.add("incorrect");
+    } else if (index === currentCharIndex) {
+      span.classList.add("current");
+    }
+    textToType.appendChild(span);
+  });
+  ajustarScroll();
+}
 function ajustarScroll() {
   const chars = textToType.querySelectorAll("span");
   if (chars[currentCharIndex]) {
@@ -174,9 +198,10 @@ function ajustarScroll() {
 function handleBackspace() {
   const chars = textToType.querySelectorAll("span");
   if (currentCharIndex > 0) {
+    chars[currentCharIndex].classList.remove("current"); // Quitar 'current' del actual
     currentCharIndex--;
     chars[currentCharIndex].classList.remove("correct", "incorrect");
-    chars[currentCharIndex].classList.add("current");
+    chars[currentCharIndex].classList.add("current"); // Marcar el anterior como actual
     updateProgressBar(currentCharIndex, textoCompleto.join(" ").length);
   }
 }
