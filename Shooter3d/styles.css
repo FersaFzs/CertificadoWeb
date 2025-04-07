@@ -1,0 +1,17 @@
+/* Elimina márgenes y paddings para que no haya espacios en blanco */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Establece la pantalla para que ocupe toda la altura */
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
+  
+  canvas {
+    display: block;
+  }
+  
