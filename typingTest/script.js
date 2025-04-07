@@ -39,185 +39,169 @@ const palabras = [
     "después", "luego", "si", "ni", "o", "y", "pero", "aunque", "como", 
     "mientras", "cuando", "donde", "dondequiera"
   ];
-  
-  
 
-  const textToType = document.getElementById("text-to-type");
-  const userInput = document.getElementById("user-input");
-  const progressBar = document.getElementById("progress-bar");
-  const timeDisplay = document.getElementById("time");
-  const wpmDisplay = document.getElementById("wpm");
-  const accuracyDisplay = document.getElementById("accuracy");
-  const startBtn = document.getElementById("start-btn");
-  const nuevoTextoBtn = document.getElementById("nuevo-texto-btn");
-  
- 
-  let currentCharIndex = 0;
-  let mistakes = 0;
-  let isTyping = false;
-  let timer;
-  let timeLeft = 60;
-  
+// Elementos del DOM
+const textToType = document.getElementById("text-to-type");
+const userInput = document.getElementById("user-input");
+const progressBar = document.getElementById("progress-bar");
+const timeDisplay = document.getElementById("time");
+const wpmDisplay = document.getElementById("wpm");
+const accuracyDisplay = document.getElementById("accuracy");
+const startBtn = document.getElementById("start-btn");
+const nuevoTextoBtn = document.getElementById("nuevo-texto-btn");
 
-  function generarTextoAleatorio(numPalabras = 30) {
-    let texto = "";
-    for (let i = 0; i < numPalabras; i++) {
-      const palabraAleatoria = palabras[Math.floor(Math.random() * palabras.length)];
-      texto += palabraAleatoria + " ";
-    }
-    return texto.trim();
+let currentCharIndex = 0;
+let mistakes = 0;
+let isTyping = false;
+let timer;
+let timeLeft = 60;
+let textoCompleto = []; // Array para almacenar todas las palabras generadas
+let palabrasVisibles = 20; // Número inicial de palabras visibles (ajustable)
+
+function generarPalabrasAleatorias(numPalabras) {
+  const resultado = [];
+  for (let i = 0; i < numPalabras; i++) {
+    const palabraAleatoria = palabras[Math.floor(Math.random() * palabras.length)];
+    resultado.push(palabraAleatoria);
   }
-  
+  return resultado;
+}
 
-  function actualizarTexto() {
-    const textoAleatorio = generarTextoAleatorio();
-    textToType.innerHTML = "";
-  
-
-    textoAleatorio.split("").forEach((char) => {
-      const span = document.createElement("span");
-      span.textContent = char;
-      textToType.appendChild(span);
-    });
-  
-
-    currentCharIndex = 0;
-    mistakes = 0;
-    progressBar.style.width = "0%";
-    userInput.value = "";
-    userInput.disabled = true;
-    isTyping = false;
-    clearInterval(timer);
-    timeLeft = 60;
-    timeDisplay.textContent = timeLeft;
-    wpmDisplay.textContent = "0";
-    accuracyDisplay.textContent = "0";
-  }
-  
-
-  function startTest() {
-    if (isTyping) return;
-    isTyping = true;
-    userInput.disabled = false;
-    userInput.focus();
-    timeLeft = 60;
-    timeDisplay.textContent = timeLeft;
-  
-
-    timer = setInterval(() => {
-      timeLeft--;
-      timeDisplay.textContent = timeLeft;
-  
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        userInput.disabled = true;
-        isTyping = false;
-      }
-    }, 1000);
-  }
-  
-
-  function handleInput(e) {
-    const chars = textToType.querySelectorAll("span");
-    const userText = userInput.value;
-  
-
-    if (currentCharIndex === 0) {
-      chars[0].classList.add("current");
+function renderizarTexto() {
+  textToType.innerHTML = "";
+  const textoVisible = textoCompleto.slice(0, palabrasVisibles).join(" ");
+  textoVisible.split("").forEach((char, index) => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    // Aplicar clases según el estado del carácter
+    if (index < currentCharIndex && userInput.value[index] === char) {
+      span.classList.add("correct");
+    } else if (index < currentCharIndex) {
+      span.classList.add("incorrect");
+    } else if (index === currentCharIndex) {
+      span.classList.add("current");
     }
-  
- 
-    if (currentCharIndex >= chars.length) {
-      const textoActual = textToType.textContent;
-      const nuevoTexto = generarTextoAleatorio(15);
-      textToType.innerHTML = "";
-  
-      (textoActual + " " + nuevoTexto).split("").forEach((char) => {
-        const span = document.createElement("span");
-        span.textContent = char;
-        textToType.appendChild(span);
-      });
-  
-      currentCharIndex = userText.length;
-      const newChars = textToType.querySelectorAll("span");
-      newChars[currentCharIndex]?.classList.add("current");
-      
-
-      ajustarScroll();
-      return;
-    }
-  
-    //Verifico caracter actual
-    const currentChar = chars[currentCharIndex].textContent;
-    const userChar = userText[currentCharIndex];
-  
-    if (userChar === currentChar) {
-      chars[currentCharIndex].classList.add("correct");
-      chars[currentCharIndex].classList.remove("incorrect", "current");
-      currentCharIndex++;
-    } else {
-      chars[currentCharIndex].classList.add("incorrect", "current");
-      mistakes++;
-    }
-  
-    updateProgressBar(currentCharIndex, chars.length);
-    updateStats(userText);
-  
-
-    if (currentCharIndex < textToType.querySelectorAll("span").length) {
-      textToType.querySelectorAll("span")[currentCharIndex]?.classList.add("current");
-      ajustarScroll(); 
-    }
-  }
-  
-  function ajustarScroll() {
-    const chars = textToType.querySelectorAll("span");
-    if (chars[currentCharIndex]) {
-      chars[currentCharIndex].scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center"
-      });
-    }
-  }
-  
-
-  function handleBackspace() {
-    const chars = textToType.querySelectorAll("span");
-    if (currentCharIndex > 0) {
-      currentCharIndex--;
-      chars[currentCharIndex].classList.remove("correct", "incorrect");
-      chars[currentCharIndex].classList.add("current");
-      updateProgressBar(currentCharIndex, chars.length);
-    }
-  }
-  
-
-  function updateProgressBar(current, total) {
-    const progress = (current / total) * 100;
-    progressBar.style.width = `${progress}%`;
-  }
-  
-
-  function updateStats(userText) {
-    const correctChars = userText.length - mistakes;
-    const accuracy = (correctChars / userText.length) * 100 || 0;
-    accuracyDisplay.textContent = accuracy.toFixed(2);
-  
-    const minutes = (60 - timeLeft) / 60;
-    const wpm = Math.round((correctChars / 5) / minutes) || 0;
-    wpmDisplay.textContent = wpm;
-  }
-  
-
-  startBtn.addEventListener("click", startTest);
-  nuevoTextoBtn.addEventListener("click", actualizarTexto);
-  userInput.addEventListener("input", handleInput);
-  userInput.addEventListener("keydown", (e) => {
-    if (e.key === "Backspace") {
-      handleBackspace();
-    }
+    textToType.appendChild(span);
   });
-  
+  ajustarScroll();
+}
 
-  window.addEventListener("DOMContentLoaded", actualizarTexto);
+function actualizarTexto() {
+  textoCompleto = generarPalabrasAleatorias(30); // Genera 30 palabras iniciales
+  currentCharIndex = 0;
+  mistakes = 0;
+  progressBar.style.width = "0%";
+  userInput.value = "";
+  userInput.disabled = true;
+  isTyping = false;
+  clearInterval(timer);
+  timeLeft = 60;
+  timeDisplay.textContent = timeLeft;
+  wpmDisplay.textContent = "0";
+  accuracyDisplay.textContent = "0";
+  renderizarTexto();
+}
+
+function startTest() {
+  if (isTyping) return;
+  isTyping = true;
+  userInput.disabled = false;
+  userInput.focus();
+  timeLeft = 60;
+  timeDisplay.textContent = timeLeft;
+
+  timer = setInterval(() => {
+    timeLeft--;
+    timeDisplay.textContent = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      userInput.disabled = true;
+      isTyping = false;
+    }
+  }, 1000);
+}
+
+function handleInput(e) {
+  const chars = textToType.querySelectorAll("span");
+  const userText = userInput.value;
+
+  if (currentCharIndex === 0) {
+    chars[0].classList.add("current");
+  }
+
+  // Verificar si estamos cerca del final del texto visible
+  const palabrasEscritas = userText.split(" ").filter(Boolean).length;
+  if (palabrasEscritas >= palabrasVisibles - 5) { // Añadir más palabras cuando queden 5 visibles
+    textoCompleto.push(...generarPalabrasAleatorias(5)); // Añadir 5 palabras nuevas
+    palabrasVisibles += 5;
+    renderizarTexto(); // Re-renderiza con el nuevo texto
+    return; // Salimos para evitar procesar el input hasta el próximo evento
+  }
+
+  const currentChar = chars[currentCharIndex]?.textContent;
+  const userChar = userText[currentCharIndex];
+
+  if (!currentChar) return; // Evitar errores si no hay más caracteres visibles
+
+  if (userChar === currentChar) {
+    chars[currentCharIndex].classList.add("correct");
+    chars[currentCharIndex].classList.remove("incorrect", "current");
+    currentCharIndex++;
+  } else {
+    chars[currentCharIndex].classList.add("incorrect");
+    chars[currentCharIndex].classList.remove("current");
+    mistakes++;
+  }
+
+  updateProgressBar(currentCharIndex, textoCompleto.join(" ").length);
+  updateStats(userText);
+
+  const nuevosChars = textToType.querySelectorAll("span");
+  nuevosChars[currentCharIndex]?.classList.add("current");
+  ajustarScroll();
+}
+
+function ajustarScroll() {
+  const chars = textToType.querySelectorAll("span");
+  if (chars[currentCharIndex]) {
+    chars[currentCharIndex].scrollIntoView({
+      behavior: "smooth",
+      block: "center", // Centrar la palabra actual
+    });
+  }
+}
+
+function handleBackspace() {
+  const chars = textToType.querySelectorAll("span");
+  if (currentCharIndex > 0) {
+    currentCharIndex--;
+    chars[currentCharIndex].classList.remove("correct", "incorrect");
+    chars[currentCharIndex].classList.add("current");
+    updateProgressBar(currentCharIndex, textoCompleto.join(" ").length);
+  }
+}
+
+function updateProgressBar(current, total) {
+  const progress = (current / total) * 100;
+  progressBar.style.width = `${progress}%`;
+}
+
+function updateStats(userText) {
+  const correctChars = userText.length - mistakes;
+  const accuracy = (correctChars / userText.length) * 100 || 0;
+  accuracyDisplay.textContent = accuracy.toFixed(2);
+
+  const minutes = (60 - timeLeft) / 60;
+  const wpm = Math.round((correctChars / 5) / minutes) || 0;
+  wpmDisplay.textContent = wpm;
+}
+
+// Event Listeners
+startBtn.addEventListener("click", startTest);
+nuevoTextoBtn.addEventListener("click", actualizarTexto);
+userInput.addEventListener("input", handleInput);
+userInput.addEventListener("keydown", (e) => {
+  if (e.key === "Backspace") handleBackspace();
+});
+
+window.addEventListener("DOMContentLoaded", actualizarTexto);

@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>wle>Shooter Básico</title>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { display: block; background-color: #111; }
-        #instructions {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: white;
-            font-family: Arial;
-        }
-    </style>
+<head>Shooter Básico</title>
+    <title>Pium Pium</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
 </head>
 <body>
-    <div id="instructions">
-        WASD para moverte | Ratón para apuntar | Clic para disparar
-    </div>
+    <div id="ui"></div>
     <canvas id="gameCanvas"></canvas>
-    <script src="game.js"></script>
+    <div id="menu">
+        <h1>SHOOTER 2D</h1>
+        <button id="startBtn">COMENZAR</button>
+        <button id="scoresBtn">PUNTUACIONES</button>
+        <div id="scores" style="display:none; max-height: 300px; overflow-y: auto;"></div>
+    </div>
+    <audio id="shootSound" src="https://assets.mixkit.co/sfx/preview/mixkit-laser-weapon-shot-1680.mp3" preload="auto"></audio>
+    <audio id="hitSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-explosion-2759.mp3" preload="auto"></audio>
 </body>
 </html>
