@@ -1,0 +1,442 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #000a1f;
+    margin: 0;
+    font-family: 'Segoe UI';
+}
+
+header {
+    background-color: #000a1f;
+    display: flex;
+    width: 100%;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    z-index: 1000;
+    position: fixed;
+}
+
+header input{
+    opacity: 0;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: aliceblue;
+    text-decoration: none;
+    margin-left: 1.5rem;    
+    font-weight: 100;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: red;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.slider img {
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .8;
+    transition: 0.5s ease;
+}
+
+.slider img:hover {
+    cursor: crosshair;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+.slider-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8rem;
+    text-transform: uppercase;
+    z-index: 10;
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.artist {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 40px;
+    padding: 80px 10%;
+    background: linear-gradient(to right, #000a1f 0%, #1a1a2e 100%);
+    color: white;
+    border-top: 1px solid rgba(255, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.artist img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 0px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.artist img:hover {
+    transform: scale(1.03);
+}
+
+.artist h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.artist h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: red;
+}
+
+.artist p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.info {
+    max-width: 600px;
+}
+
+.links {
+    background-image: url(./img/cityBack.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 30px 10%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.links a {
+    margin: 20px;
+}
+
+.links a img {
+    width: 120px;
+    transition: 0.5s ease;
+}
+
+.links a img:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #000a1f;
+    color: aliceblue;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.formulario{
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.publi form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.publi{
+    background: linear-gradient(to right, #000a1f 0%, #1a1a2e 100%);
+    padding: 40px 10%;
+    color: white;
+    text-align: center;
+    border-top: 1px solid rgba(255, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 75px;
+}
+
+.publi h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.publi h3::after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: red;
+}
+
+.publi input, .publi textarea{
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 15px;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    margin: 10px;
+}
+
+.publi input::placeholder, .publi textarea::placeholder{
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.publi input:focus, .publi textarea:focus{
+    border-color: red;
+}
+
+.publi textarea{
+    resize: vertical;
+}
+
+.publi input, .publi textarea, .publi button {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.publi button{
+    background-color: red;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* estilos para móviles (pantallas menores a 768px) */
+@media (max-width: 768px) {
+    /* Menú hamburguesa */
+    header {
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    nav {
+        display: none; /* Ocultamos el menú normal */
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #000a1f;
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+
+    nav a {
+        margin-left: 0;
+        padding: 0.5rem 1rem;
+        text-align: center;
+    }
+
+    /* Checkbox hack para el menú hamburguesa */
+    #menu-toggle {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        width: 30px;
+        height: 20px;
+        position: relative;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: white;
+        position: absolute;
+        transition: 0.3s ease;
+    }
+
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    .hamburger span:nth-child(3) { bottom: 0; }
+
+    #menu-toggle:checked ~ nav {
+        display: flex; /* Mostramos el menú al activar el checkbox */
+    }
+
+    /* Animación del menú hamburger convertida en una cruz */
+    
+    #menu-toggle:checked + .hamburger span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    #menu-toggle:checked + .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-toggle:checked + .hamburger span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+
+    /* Slider en móvil */
+    .slider {
+        display: block;
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .slider img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    /* Elegimos una imagen del slider y la mostramos únicamente */
+    .slider img:nth-child(2) {
+        opacity: 0.8;
+        z-index: 1; 
+    }
+
+    .slider img:hover {
+        width: 100%; /* Quitamos el efecto hover en móvil */
+    }
+
+    .slider::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+        z-index: 2;
+    }
+
+    .slider-title {
+        font-size: 3rem;
+        text-align: center;
+        padding: 0 15px;
+        z-index: 3;
+        letter-spacing: 4px;
+        background: linear-gradient(45deg, #ff0000, #ffffff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+    }
+
+    /* Sección artist en móvil */
+    .artist {
+        flex-direction: column;
+        padding: 40px 5%;
+        gap: 20px;
+    }
+
+    .artist img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .info {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .artist h2 {
+        font-size: 1.8rem;
+    }
+
+    .artist p {
+        font-size: 1rem;
+    }
+
+    /* sección formulario */
+    .publi {
+        padding: 30px 5%;
+        padding-bottom: 50px;
+    }
+
+    .publi {
+        font-size: 1.5rem;
+    }
+
+    .publi input, .publi textarea {
+        font-size: 0.9rem;
+    }
+
+    .publi button {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-title {
+        font-size: 2rem;
+    }
+
+    .artist h2 {
+        font-size: 1.5rem;
+    }
+
+    .links a img {
+        width: 80px;
+    }
+
+    .publi h3 {
+        font-size: 1.2rem;
+    }
+}
