@@ -5,7 +5,7 @@ html {
 body {
     background-color: #000a1f;
     margin: 0;
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI', -apple-sytstem, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 }
 
 header {
@@ -377,7 +377,7 @@ footer {
         text-shadow: none;
     }
 
-    /* Sección artist en móvil */
+    /* sección artist para pantallas pequeñas */
     .artist {
         flex-direction: column;
         padding: 40px 5%;
@@ -422,6 +422,8 @@ footer {
         padding: 10px 15px;
     }
 }
+
+/* cambios para pantallas aún más pequeñas (móviles de 10:16) */
 
 @media (max-width: 480px) {
     .slider-title {
