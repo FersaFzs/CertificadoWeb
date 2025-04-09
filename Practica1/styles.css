@@ -341,6 +341,7 @@ footer {
         background-color: #000a1f;
         flex-direction: column;
         padding: 1rem 0;
+        margin-top: -10px;
         gap: 1rem;
     }
 
