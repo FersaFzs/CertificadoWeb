@@ -349,6 +349,7 @@ footer {
         padding: 0.5rem 1rem;
         text-align: center;
         font-weight:500;
+        transform: translateX(-10px);
     }
 
     /* Checkbox hack para el menú hamburguesa */
