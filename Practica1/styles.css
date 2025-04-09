@@ -18,7 +18,7 @@ header {
     padding: 1rem 2rem;
     z-index: 1000;
     position: fixed;
-    transform: translateX(-55px);
+    transform: translateX(-60px);
 }
 
 header input{
